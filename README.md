@@ -207,7 +207,7 @@ Improvements:
 
 
 ## Simulation of Charging Station Operations ## 
-* Didn't have much time to complete this part fully but wrote up what I have in mind *
+*Didn't have much time to complete this part fully but wrote up what I have in mind*
 
 We can simulate using the historical data we have from our original dataframe. Here are some important numbers to keep in mind: 
 * Average number of sessions per hour: 2.2088484059856865
