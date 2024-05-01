@@ -20,7 +20,7 @@ Develop a comprehensive analysis and simulation model to predict and improve EV 
     * Simpy [4.1.1]
 
 ## Project Outline: 
-I. Data Preparation and Exploration 
+I. Dataset Preparation and Exploration
   * Data Cleaning: Process dataset to handle missing values, correct anomalies, and prepare it for analysis.
   * Exploratory Data Analysis: Use visualizations to understand the data’s underlying patterns, distributions, and correlations.
     
@@ -67,7 +67,7 @@ This [dataset](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7
 | Sun            | Sunday indicator                                                                                                    |
 | reportedZip    | Zip provided by user indicator                                                                                      |
 
-## Dataset Preparation and Exploration 
+## Dataset Preparation and Exploration
 1. Converting data and time fields to python datetime 
     * 'created' and 'ended' 
     * The year column in the time is wrong i.e. "0014-11-18 15:40:26" should actually be 2014 rather than 0014 (Also for 0015 as well)
