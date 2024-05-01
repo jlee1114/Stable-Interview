@@ -1,7 +1,12 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 # Optimizing EV Charging Station Performance through Predictive Analytics and Simulation
-Showcase strong interest in stable auto and personal skills
+
+<p align="center">
+   <img src="imgs/960x0.webp" width="360"/>
+</p>
+
+
 
 
 ## Project Objective:
