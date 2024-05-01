@@ -65,6 +65,15 @@ This [dataset](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7
 | Sun            | Sunday indicator                                                                                                    |
 | reportedZip    | Zip provided by user indicator                                                                                      |
 
+
+***Quick Note*** 
+This dataset, spanning 2014 to 2015, captures a period when electric vehicles (EVs) were less common than they are today but the sales were increasing significantly. Historically, EV sales have risen exponentially from 2011 onwards, reflecting a significant shift in consumer adoption and technological advancement in the automotive industry. The graph of vehicle sales from 2000 to 2021, sourced from the [Bureau of Transportation](https://www.bts.gov/), underscores this trend of rapid growth. 
+
+<img src="imgs/Screen Shot 2024-05-01 at 10.58.11 AM.png" width="800"/>
+
+The exponential nature of this growth presents challenges for predictive modeling, particularly when using historical data from periods of relatively lower market penetration and sales volume. This exponential growth leads to data volatility, where earlier data may not accurately represent more recent trends, thereby affecting the performance of models trained on this dataset. Models may struggle to forecast future trends accurately if they cannot adjust to the accelerating pace of sales and the evolving market dynamics. Such discrepancies can introduce flaws in predictions, as the model may not fully account for the rapidly changing market conditions and consumer behaviors driving the surge in EV popularity.
+
+
 ## Dataset Preparation and Exploration
 1. Converting data and time fields to python datetime 
     * 'created' and 'ended' 
