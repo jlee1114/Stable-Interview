@@ -23,7 +23,7 @@ I. Dataset Preparation and Exploration
   * Exploratory Data Analysis: Use visualizations to understand the data’s underlying patterns, distributions, and correlations.
     
 II. Predictive Modeling
-  * Demand Forecasting Model: Build a machine learning model to predict daily usage patterns and demand at EV charging stations. Techniques include time series analysis(linear and ARIMA) and regression models.
+  * Demand Forecasting Model: Build a machine learning model to predict daily usage patterns and demand at EV charging stations. Techniques include time series analysis and regression models.
   * Performance Prediction Model: Develop a model to predict the energy consumption of charging stations.
     
 III. Simulation of Charging Station Operations
