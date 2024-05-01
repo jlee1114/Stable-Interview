@@ -84,18 +84,66 @@ For now I will choose to leave as-is because it's not critical for my primary an
 
 ## EDA 
 
-Histogram for distribution of key metrics for 'kwhTotal' and 'chargeTimeHrs'.
+### Histogram for distribution of key metrics for 'kwhTotal' and 'chargeTimeHrs'
 <img src="imgs/histogram.png" width="800"/>
 
-Time series graph for 'kwhTotal' trends over time.
+#### Key Observations(kWh)
+1. Shape
+   * The distribution is heavily skewed to the right, with a peak around 2-3 kWh and a long tail extending to higher kWh values. This suggests that most charging sessions involve small amounts of energy, with fewer sessions consuming more energy.
+2. Central Tendency
+   * The mode of the distribution (the most frequent value) is around 2-3 kWh, indicating that this is a common amount of energy drawn during a session.
+3. Variability
+   * There is significant variability in the distribution, as indicated by the long tail. Some charging sessions consume substantially more energy than the typical amounts.
+
+#### Key Observations (Charge Time)
+1. Shape
+   * The distribution of charging time is also right-skewed, with a peak around 1-2 hours and a tail extending to longer durations.
+2. Central Tendency
+   * Most charge times are short, with the mode between 1-2 hours.
+3. Variability
+   * There is a presence of outliers or sessions that last significantly longer than the typical 1-2 hours, though these are less frequent.
+
+
+### Time series graph for 'kwhTotal' trends over time.
 <img src="imgs/timeSeries.png" width="800"/>
 
-Distribution of 'kwhTotal' across days of the week.
+#### Key Observations
+1. Seasonal Trends:
+   * There appears to be a cyclic pattern in the data, with fluctuations that might suggest seasonal trends. This could indicate higher usage in certain months, possibly influenced by weather conditions, holiday seasons, or other seasonal factors.
+2. Volatility:
+   * The data shows significant volatility in daily kWh usage, with some days experiencing very high usage and others much lower. This variability might require careful management of charging infrastructure to ensure it can handle peak demands.
+3. Growth Over Time:
+   * There seems to be an upward trend in the latter part of the series, particularly noticeable starting around mid-2015. This could be indicative of an increase in the adoption of EVs, expansion of charging infrastructure, or both.
+4. Dips and Peaks:
+   * Specific notable dips and peaks could be linked to external events (e.g., holidays, special promotions, or temporary outages/disruptions at charging stations). For instance, the sharp dips around early 2015 might warrant further investigation to understand underlying causes.
+
+### Distribution of 'kwhTotal' across days of the week.
 <img src="imgs/days.png" width="800"/>
 
-Correlation heatmap to examine correlation between numeric features.
+#### Key Observations
+1. Variability and Median Values:
+   * Tuesday through Friday show similar median kWh usage values, with Tuesday and Wednesday having slightly lower variability in kWh usage as indicated by the shorter interquartile ranges (IQR). This suggests a more consistent usage pattern mid-week.
+   * Monday and Thursday display a slight increase in median kWh usage compared to mid-week but also show a bit more variability, especially Thursday.
+   * Saturday and Sunday show significantly higher variability in kWh usage with higher median values, particularly on Sunday. Sunday shows not only the highest median kWh usage but also the broadest range of kWh usage, as indicated by the longer box and more spread out outliers.
+2. Outliers:
+   * There are numerous outliers on most days, but particularly on Sunday. Outliers are data points that fall far from the central cluster of data (outside 1.5 * IQR from the upper or lower quartile), indicating unusually high or low kWh usage on these days.
+   * The presence of outliers, especially on weekends, suggests that there can be extreme variations in usage, possibly due to non-routine activities or events.
+3. Spread and Dispersion:
+   * The weekend (Saturday and Sunday) boxes are not only taller (indicating a higher IQR, thus more variability among data points) but also show the tails (whiskers) extending further from the median than on weekdays. This could imply less predictability in usage patterns during these days.
+   * The relatively compact boxes from Tuesday to Friday suggest more consistent usage patterns on these days.
+
+### Correlation heatmap to examine correlation between numeric features.
 <img src="imgs/corrMatrix.png" width="800"/>
 
+#### Key Observations
+1. kWhTotal and chargeTimeHrs (0.53):
+   * This moderate positive correlation suggests that as the charge time increases, the total kWh delivered also tends to increase, which is expected since more time charging generally results in more energy being delivered.
+2. endTime and chargeTimeHrs (0.12):
+   * A low positive correlation indicates that there's some relationship between the time when the charging ends and the total duration of charging, but other factors likely influence the end time as well, such as the time of day when the charging started.
+3. facilityType and several days of the week (ranging from -0.07 to 0.35):
+   * These correlations might suggest varying usage patterns on different days of the week depending on the facility type. For instance, certain facilities might see more use during weekdays if they are near workplaces.
+4. Negative correlations in managerVehicle with several other variables (e.g., -0.17 with chargeTimeHrs):
+   * This could indicate that vehicles associated with a manager (possibly company vehicles) might have different usage patterns compared to personal vehicles, perhaps adhering to specific operational constraints or usage timings.
 
 ## Predictive Modeling
 
