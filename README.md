@@ -263,7 +263,7 @@ Components:
 * Amazon CloudWatch: Monitor the performance of all components, especially API Gateway and Lambda, to ensure operational health and log data for audits.
 
 
-<img src="imgs/stable_auto_drawio.drawio.png" width="1000"/>
+<img src="imgs/stable_auto_drawio.drawio.png" width="1200"/>
 
 ### Detailed AWS Architecture Flow:
 1. **Data Ingestion**:
