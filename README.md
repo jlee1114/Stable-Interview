@@ -1,5 +1,7 @@
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
 # Optimizing EV Charging Station Performance through Predictive Analytics and Simulation
-Project to Showcase interest in stable auto and personal skills
+Showcase strong interest in stable auto and personal skills
 
 
 ## Project Objective:
@@ -9,9 +11,8 @@ Develop a comprehensive analysis and simulation model to predict and improve EV 
 * Python[3.12.3] 
     * Pandas[2.2.2]
     * Numpy [1.26.4]
-    * Scikit-learn 
-* SQL [PostgreSQL]
-* Docker
+    * Scikit-learn [1.4.2]
+    * Simpy [4.1.1]
 
 ## Project Outline: 
 I. Data Preparation and Exploration 
@@ -26,11 +27,8 @@ III. Simulation of Charging Station Operations
   * Capacity Planning: Use simulations to model scenarios where demand may exceed supply, and identify the impact of adding more charging stations.
   * Pricing Strategy Simulation: Simulate different pricing models to find the optimal balance between usage and revenue.
     
-IV. Data Pipeline and Monitring 
-  * Data Pipeline Design: Sketch out a data pipeline that can automate data collection, processing, and feeding into machine learning models for real-time performance monitoring.
-  * Performance Dashboard: Develop an interactive dashboard that displays real-time analytics and KPIs to monitor charging station performance.
-
-
+IV. Data Pipeline and Monitering 
+  * Data Pipeline Design
 
 
 
@@ -196,9 +194,36 @@ env.process(ev_charging_station(env, number_of_chargers=2, arrival_rate=1/arriva
 env.run(until=1440)  # Simulate for one day (1440 minutes)
 
 ```
+## Data Pipeline and Monitering 
+Assuming from the job description, the application will be utilizing RESTAPI's to grab data. I have built a sketch of a possible solution for utilizing AWS services to create a robust and scalable solution. This architecture will be able to handle the data flow from the source to storage and analysis. 
+
+Components:
+* API Gateway: Use AWS API Gateway to manage, secure, and route API calls.
+* AWS Lambda: Process API requests by executing the business logic and interacting with other AWS services for data handling.
+* Amazon S3: Use as the primary data lake storage for raw data collected from the API.
+* AWS Glue: Perform ETL operations on the data stored in S3 to transform it into a structured format suitable for analysis.
+* Amazon RDS or Amazon Redshift: Serve as the data warehousing solution to store and manage transformed data.
+* Amazon QuickSight: Provide business intelligence capabilities by allowing visualization and reporting on the processed data.
+* Amazon CloudWatch: Monitor the performance of all components, especially API Gateway and Lambda, to ensure operational health and log data for audits.
 
 
+<img src="imgs/stable_auto_drawio.drawio.png" width="1000"/>
 
+### Detailed AWS Architecture Flow:
+1. **Data Ingestion**:
+   * Client applications send data to the REST API hosted on AWS API Gateway.
+   * API Gateway receives API requests and forwards them to AWS Lambda for processing.
+2. **Data Processing and Initial Storage**:
+   * AWS Lambda processes the incoming data (validation, transformation, etc.) and stores the raw data in Amazon S3. This storage acts as a data lake, where data is kept in its original form.
+3. **ETL Processing**:
+   * AWS Glue is triggered on a schedule or event (such as new data upload completion in S3). It performs ETL tasks to transform raw data into a structured format. AWS Glue can read data from S3, transform it, and then load the processed data either back into S3 in a different format or directly into a database.
+   * For complex transformations, AWS Glue can use PySpark or Scala scripts, which are scalable and handle large datasets efficiently.
+4. **Data Storage for Analysis**:
+   * The transformed data is loaded into Amazon RDS for transactional queries or Amazon Redshift for analytics and warehousing. This choice depends on the nature of the data and the type of queries that will be performed.
+5. **Data Visualization and Reporting**:
+   * Amazon QuickSight accesses the data in RDS or Redshift to create visualizations, dashboards, and reports, providing insights and analytics to business users.
+6. **Monitoring and Logging**:
+   * Amazon CloudWatch monitors the performance of API Gateway, Lambda functions, and other services. It collects logs, metrics, and events, providing a comprehensive view of the AWS environment's health and activity.
 
 
 ## Contact 
