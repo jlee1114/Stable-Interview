@@ -7,8 +7,6 @@
 </p>
 
 
-
-
 ## Project Objective:
 Develop a comprehensive analysis and simulation model to predict and improve EV charging station performance, optimize operations, and enhance revenue generation strategies.
 
@@ -120,18 +118,18 @@ For now I will choose to leave as-is because it's not critical for my primary an
 3. Growth Over Time:
    * There seems to be an upward trend in the latter part of the series, particularly noticeable starting around mid-2015. This could be indicative of an increase in the adoption of EVs, expansion of charging infrastructure, or both.
 4. Dips and Peaks:
-   * Specific notable dips and peaks could be linked to external events (e.g., holidays, special promotions, or temporary outages/disruptions at charging stations). For instance, the sharp dips around early 2015 might warrant further investigation to understand underlying causes.
+   * Specific notable dips and peaks could be linked to external events. For instance, the sharp dips around early 2015 might warrant further investigation to understand underlying causes.
 
 ### Distribution of 'kwhTotal' across days of the week.
 <img src="imgs/days.png" width="800"/>
 
 #### Key Observations
 1. Variability and Median Values:
-   * Tuesday through Friday show similar median kWh usage values, with Tuesday and Wednesday having slightly lower variability in kWh usage as indicated by the shorter interquartile ranges (IQR). This suggests a more consistent usage pattern mid-week.
+   * Tuesday through Friday show similar median kWh usage values, with Tuesday and Wednesday having slightly lower variability in kWh usage as indicated by the shorter interquartile ranges. This suggests a more consistent usage pattern mid-week.
    * Monday and Thursday display a slight increase in median kWh usage compared to mid-week but also show a bit more variability, especially Thursday.
    * Saturday and Sunday show significantly higher variability in kWh usage with higher median values, particularly on Sunday. Sunday shows not only the highest median kWh usage but also the broadest range of kWh usage, as indicated by the longer box and more spread out outliers.
 2. Outliers:
-   * There are numerous outliers on most days, but particularly on Sunday. Outliers are data points that fall far from the central cluster of data (outside 1.5 * IQR from the upper or lower quartile), indicating unusually high or low kWh usage on these days.
+   * There are numerous outliers on most days, but particularly on Sunday. Outliers are data points that fall far from the central cluster of data (outside 1.5 * IQR), indicating unusually high or low kWh usage on these days.
    * The presence of outliers, especially on weekends, suggests that there can be extreme variations in usage, possibly due to non-routine activities or events.
 3. Spread and Dispersion:
    * The weekend (Saturday and Sunday) boxes are not only taller (indicating a higher IQR, thus more variability among data points) but also show the tails (whiskers) extending further from the median than on weekdays. This could imply less predictability in usage patterns during these days.
@@ -152,7 +150,7 @@ For now I will choose to leave as-is because it's not critical for my primary an
 
 ## Predictive Modeling
 
-1. Performance Prediction Model
+1. Performance Prediction Model - Simple Linear Regression
 
 <img src="imgs/performancePred.png" width="800"/>
 
@@ -167,10 +165,9 @@ Analysis:
 Improvements:
 * Feature Engineering: Investigate adding more relevant features or transforming existing features to capture non-linear relationships.
 * Model Complexity: Consider using more complex models that can capture more complex patterns in the data, such as random forests or gradient boosting machines.
-* Data Quality: Ensure the data quality is high and check for any data preprocessing issues like outliers or incorrect data entries that could be influencing model performance.
+* Data size: Consider using more data from a more recent time where EV use have spiked.
 
-
-2. Demand Forecasting with Simple Linear Regression
+2. Demand Forecasting - Simple Linear Regression
 
 <img src="imgs/demandForeLinear.png" width="800"/>
 
@@ -187,7 +184,7 @@ Improvements:
 * Additional Features: Include time-based features like day of the week, holidays, or weather conditions, which can impact energy usage.
 * Higher-Order Terms: Try polynomial regression or interaction terms to capture more complex relationships.
 
-3. Demand Forecasting with ARIMA
+3. Demand Forecasting - ARIMA
 
 <img src="imgs/demandForeARIMA.png" width="800"/>
 
@@ -200,8 +197,7 @@ Analysis:
 * Model Fit: The high errors suggest that ARIMA may not be capturing all the relevant patterns, particularly if there is seasonality or non-stationary behavior in the dataset that hasn't been addressed adequately.
 
 Improvements:
-* Check Stationarity: Revisit the stationarity assumption and make sure the data are properly differenced to achieve stationarity.
-* Seasonal Model: If there is seasonality, consider using a SARIMA model which incorporates both non-seasonal and seasonal elements.
+* Seasonal Model: Since there is seasonality, consider using a SARIMA model which incorporates both non-seasonal and seasonal elements.
 * Model Diagnostics: Review the residuals of the ARIMA model for any patterns that suggest poor model fit and adjust the model parameters accordingly.
 
 
