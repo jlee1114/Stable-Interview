@@ -197,3 +197,13 @@ env.run(until=1440)  # Simulate for one day (1440 minutes)
 
 ```
 
+
+
+
+
+## Contact 
+
+Justin (Jin Wook) Lee  - justinjwlee1114@gmail.com
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&color=blue
+[linkedin-url]: https://www.linkedin.com/in/justinjwlee1114/
