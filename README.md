@@ -153,3 +153,47 @@ Improvements:
 * Seasonal Model: If there is seasonality, consider using a SARIMA model which incorporates both non-seasonal and seasonal elements.
 * Model Diagnostics: Review the residuals of the ARIMA model for any patterns that suggest poor model fit and adjust the model parameters accordingly.
 
+
+## Simulation of Charging Station Operations ## 
+* Didn't have much time to complete this part fully but wrote up what I have in mind *
+
+We can simulate using the historical data we have from our original dataframe. Here are some important numbers to keep in mind: 
+* Average number of sessions per hour: 2.2088484059856865
+* Average charge duration: 170.48925871379478 minutes
+* Standard deviation of charge duration: 90.4483147118524 minutes
+
+We can then use these metrics create a simple simulation using packages in Python such as [Simpy](https://simpy.readthedocs.io/en/latest/). Simpy is great for simulating variables with discrete distributions.
+
+For the simulation we can get these outputs using the methods listed: 
+1. Arrival Times - Exponential Distribution
+   * Given that vehicle arrivals at charging stations can be reasonably assumed to be independent events with a constant mean rate, using the exponential distribution is justified.
+2. Charge Duration: Normal Distribution
+   * Central Limit Theorem: This theorem suggests that when independent random variables are added, their properly normalized sum tends toward a normal distribution even if the original variables themselves are not normally distributed. In most situations, the total charge time can be affected by small independent factors; battery level, charger type, etc... however, these can all be approximated by a normal distribution.
+
+We can build something simple like this at first to take an initial stab at simulating with our parameters.
+
+```
+import simpy
+import random
+
+def ev_charging_station(env, number_of_chargers, arrival_rate):
+   """Simulation of charge station"""
+    charger = simpy.Resource(env, number_of_chargers)
+    
+    while True:
+        yield env.timeout(random.expovariate(arrival_rate)) # Exponential distribution with Arrival times
+        env.process(vehicle(env, charger))
+
+def vehicle(env, charger, mean_duration, std_duration):
+    """Simulate the charging process of a single vehicle"""
+    with charger.request() as request:
+        yield request
+        charge_duration = random.normalvariate(mean_duration, std_duration)  # Normal distribution with Charge duration
+        yield env.timeout(charge_duration)
+
+env = simpy.Environment()
+env.process(ev_charging_station(env, number_of_chargers=2, arrival_rate=1/arrival_rate_per_hour))
+env.run(until=1440)  # Simulate for one day (1440 minutes)
+
+```
+
