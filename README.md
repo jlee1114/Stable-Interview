@@ -166,7 +166,9 @@ For now I will choose to leave as-is because it's not critical for my primary an
 
 Analysis:
 * MAE and MSE: The MAE and MSE values appear relatively low, but this assessment really depends on the scale of your target variable (kWh). If the typical values of your target are large, these errors might be acceptable.
-* R²: The negative R² indicates that the model performs worse than a horizontal mean line. This is a sign that the model is not capturing the underlying pattern and might be poorly specified or using non-relevant features.
+* R²:
+   * The R² score of 0.31 means that the model explains 31% of the variance in the dependent variable based on its input variables. This is a measure of how well the differences in the independent variables account for the variations in the dependent variable you're trying to predict.
+   * This indicates a low to moderate level of fit. While the model does provide some insight into the data, a significant portion of the variance (69%) remains unexplained by the model. This suggests that there may be other factors or variables not included in the model that influence the dependent variable.
 
 Improvements:
 * Feature Engineering: Investigate adding more relevant features or transforming existing features to capture non-linear relationships.
