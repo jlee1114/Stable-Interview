@@ -162,7 +162,7 @@ For now I will choose to leave as-is because it's not critical for my primary an
 
 * MAE = 1.66
 * MSE = 10.00
-* R² = -0.31
+* R² = 0.31
 
 Analysis:
 * MAE and MSE: The MAE and MSE values appear relatively low, but this assessment really depends on the scale of your target variable (kWh). If the typical values of your target are large, these errors might be acceptable.
